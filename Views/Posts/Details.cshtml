@@ -1,0 +1,32 @@
+﻿@model BlogWithEf.Models.Post
+
+@{
+    ViewData["Title"] = "Post Details";
+}
+
+<h1>Post Details</h1>
+
+<div class="card mb-3">
+    <div class="card-body">
+
+        <h2>@Model.Title</h2>
+
+        <hr />
+
+        <p>@Model.Body</p>
+
+        <hr />
+
+        <small>
+            Posted: @Model.CreatedUtc.ToLocalTime()
+        </small>
+
+    </div>
+</div>
+
+<a asp-action="Edit"
+   asp-route-id="@Model.Id"
+   class="btn btn-warning">Edit</a>
+
+<a asp-action="Index"
+   class="btn btn-secondary">Back to Blog</a>

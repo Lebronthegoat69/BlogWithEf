@@ -1,0 +1,51 @@
+﻿@model IEnumerable<BlogWithEf.Models.Post>
+
+@{
+    ViewData["Title"] = "My Blog";
+}
+
+<h1>My Blog</h1>
+
+<p>
+    <a asp-controller="Posts"
+       asp-action="Create"
+       class="btn btn-primary">
+        Create New Post
+    </a>
+</p>
+
+@if (Model == null || !Model.Any())
+{
+    <p>No blog posts yet. Create your first post!</p>
+}
+else
+{
+    @foreach (var post in Model)
+    {
+        <div class="card mb-3">
+            <div class="card-body">
+                <h3>@post.Title</h3>
+
+                <p>@post.Body</p>
+
+                <small>
+                    Posted: @post.CreatedUtc.ToLocalTime()
+                </small>
+
+                <hr />
+
+                <a asp-action="Details"
+                   asp-route-id="@post.Id"
+                   class="btn btn-info">Details</a>
+
+                <a asp-action="Edit"
+                   asp-route-id="@post.Id"
+                   class="btn btn-warning">Edit</a>
+
+                <a asp-action="Delete"
+                   asp-route-id="@post.Id"
+                   class="btn btn-danger">Delete</a>
+            </div>
+        </div>
+    }
+}
